@@ -1,0 +1,22 @@
+name: Ejecutar Script de Python
+run-name: ${{ github.actor }} está ejecutando main.py
+on: [push]
+
+jobs:
+  ejecutar-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v6
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # Elige la versión que necesites
+
+      - name: Instalar dependencias (Opcional)
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Ejecutar script
+        run: python main.py
